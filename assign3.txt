@@ -1,0 +1,99 @@
+Assign3: Due 11:59PM October 25
+
+An agency provides background check service. Given a candidate they can verify
+various things: credit, criminal records, employment verification, citizenship 
+check, etc. There may be more things they can verify in the future.
+
+To make things easy we will use social security number to represent a 
+candidate.
+
+Design a class library with the following:
+
+A candidate can be represented using the social security number, first name, 
+and last name.
+
+Provide facility to evaluate a candidate based on various criteria selected.
+
+The result of evaluation is either an approve or a disapprove. If it was a 
+disapprove, the reason(s) are provided. The result of evaluation should be
+candidate's full name, their social security number, and the result of the 
+evaluation, along with reasons for rejection.
+
+Design the library so that a user of the library can decide which criteria to
+use for evaluation. They can select one or more criteria. They can also 
+provide their own criteria beyond what the library provides.
+
+For each of the criteria (for example to check criminal records) we will 
+pretend that such code can be implemented by talking to a database or a web 
+service. For the purpose of this exercise we will generate a random response 
+in the code for the analysis of a criteria like criminal record.
+
+Let's focus on the following after the coding is completed:
+
+1. What design principles did we use in this assignment?
+
+    In this assignment, we made use of all six principles in DYSOLD and outside
+of the acronym, we also used ISP. To begin, we initially thought to have a
+method "evaluate" in an interface Check that would call one type of check
+function and that one would call another in the same interface and so on. This
+would have violated two principles -- ISP and SRP. The client would have had to
+depend on methods they didn't need, and the interface would have had many
+responsibilities when it should only have one. To ensure we followed both
+principles, we split that interface into separate, smaller and more specific
+ones. This way, the client could access only those methods that they needed,
+and each interface could have a separate responsibility.
+
+    When creating our class Response, we used OCP by making it open for
+extension but closed for modification by making the attributes final. When
+writing any program, we have grown accustomed to preventing the violation of
+DRY, so we used that to guide us in the writing of this program as well.
+However, we were not able to do without violating YAGNI. We made the class
+Customer with attributes and a constructor when it wasn't necessary to the
+project. As always, we feel the need to implement as much as we can possibly
+think of at once, and we went too far and added functionality that was outside
+the design we intended to create.
+
+    Finally, we used LSP and DIP when designing our BackgroundCheck interface.
+We can send any of the check methods to our method "evaluateCriteria" as
+functions because they all return Response and are interchangeable to the
+method. To prevent coupling, we implemented DIP by introducing interfaces
+between BackgroundCheck and its dependencies. This way, if we change the
+lower-level interfaces, it doesn't directly effect BackgroundCheck because the
+details depend on abstractions rather than those lower-level interfaces. We
+used method injection to replace the direct dependency without changing the
+code.
+
+
+2. What were some of the challenges you ran into when creating the program?
+
+    Our first challenge was returning a boolean along with a string in each of
+our check functions. We grew accustomed to returning a simple data type and
+didn't think of returning both the boolean and string together by returning a
+class. Our second challenge came from learning not only how to pass a function,
+but trying to create a method that could accept as many of a type of argument
+as the user wished to pass. This was our first time working with variable
+arguments.
+
+
+3. Were there any surprises or unexpected learnings?
+
+    We weren't expecting to learn about varargs, but it proved to be quite
+useful for our program. Our largest surprise came from learning the difference
+between functional and imperative style of coding. At first, we wrote the
+method "evaluateCriteria" in BackgroundCheck in an imperative style. Once we
+were told to switch to a functional style, we made "evaluateCriteria" into a
+recursive function. However, we learned that functional does not equal
+recursive, so with many hours spent reading about functional style and learning
+what libraries we could use to rewrite "evaluateCriteria", we finally reached a
+functional style. Although correct in style, we had three separate iterations,
+so finally, with your help, we were able to have a function that iterates
+through only once and achieves the output desired.
+
+Total [100]: 100
+Code compiles with no errors [20]:
+All tests pass [10]:
+Test quality [20]:
+Code coverage [10]:
+Design quality [20]:
+Code quality[10]:
+Answers to questions [10]:

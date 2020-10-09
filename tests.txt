@@ -1,0 +1,19 @@
+x canary test
+
+x candidate is a U.S. citizen
+x candidate is not a U.S. citizen and returns reason "Not a U.S. Citizen"
+
+x candidate has good credit
+x candidate is not a U.S. citizen and returns reason "Poor Credit Score"
+
+x candidate has criminal history
+x candidate is not a U.S. citizen and returns reason "Has Felony on File"
+
+x candidate provided full previous employment details
+x candidate is not a U.S. citizen and returns reason "Failed to Provide Previous Employment Details"
+
+x candidate is evaluated and returns no reasons for rejection
+x candidate is evaluated and returns one reason for rejection
+x candidate is evaluated and returns two reasons for rejection
+x candidate is evaluated and returns three reasons for rejection
+x candidate is evaluated and returns four reasons for rejection
